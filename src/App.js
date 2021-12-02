@@ -93,7 +93,6 @@ export default function App() {
   }
 
   const loadMore = () => {
-    console.log("worked")
     setPokeNum(prevNum => prevNum + 6)
   }
 
@@ -109,11 +108,11 @@ export default function App() {
             <h1 className="poke-name">{poke.name}</h1>
           </button>
         ))}
-        <div>
-          <button className="load-more-btn" onClick={loadMore}>Load More +</button>
+      </div>
+        <div className="button-container">
+          <button className="load-more-btn" onClick={loadMore}>Load more Pokes</button>
                 {/* add a random button */}
         </div>
-      </div>
 
       <Modal onClose={() => setShow(false)} show={show} pokemon={pokemon} />
 
