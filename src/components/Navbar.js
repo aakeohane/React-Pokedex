@@ -5,7 +5,7 @@ export default function Navbar(props) {
   return (
     <nav className="nav-bar">
       <img src={pokeball} alt="poke-ball" />
-      <h1> Pokedex </h1>
+      <h1> Pokédex </h1>
       <input 
         type="search" 
         id="poke-search"

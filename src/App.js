@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 export default function App() {
 
-  const initialNum = 0;
+  const initialNum = 9;
   const [pokeNum, setPokeNum] = useState(initialNum)
 
   const [pokemonList, setPokemonList] = useState([])
@@ -63,7 +63,6 @@ export default function App() {
 
   // search function to update state only where its needed in results, true source of state is unchanged (pokemonList)
   function searchPokes(event) {
-    setPokeNum(initialNum)
     if(!event) {
       setResults(pokemonList)
       return
@@ -73,17 +72,24 @@ export default function App() {
     const filteredPoke = pokemonList.filter(poke => poke.name.toLowerCase().includes(searchString))
     if (!filteredPoke.length) {
       setResults([])
-    } else {
+      setPokeNum(initialNum)
+    } 
+    if (!searchString) {
+      setResults(pokemonList)
+      setPokeNum(initialNum)
+    } 
+    else {
       filteredPoke.forEach((poke) => {
         matches.push(poke)
       })
       setResults(matches)
+      setPokeNum(matches.length)
     }
   }
 
   function loadMore() {
+    console.log("worked")
     setPokeNum(prevNum => prevNum + 6)
-    console.log(pokemonList)
   }
 
   return (
@@ -93,14 +99,18 @@ export default function App() {
       <div className="poke-container">
         {results.slice(0, pokeNum).map((poke) => (
           <button className="poke-btn" key={poke.id} onClick={() => showDetails(poke)}>
-            <h1 className="poke-name">{poke.name}</h1>
+            <p className="poke-id">{poke.id}</p>
             <img className="poke-sprite" src={poke.pokeSprites} alt={poke.name} />
+            <h1 className="poke-name">{poke.name}</h1>
           </button>
         ))}
+        <div>
+          <button className="load-more-btn" onClick={loadMore}>Load More +</button>
+                {/* add a random button */}
+        </div>
+        
       </div>
       <div> 
-      {results.length > 0 && !(pokeNum >= results.length) && !(pokeNum >= 151) && <button onClick={() => loadMore}>Load More +</button>}
-        {/* add a random button */}
         <h1>{pokemon.name}</h1>
         <h2>{pokemon.id}</h2>
         <img src={pokemon.imageUrl} alt={pokemon.name} />

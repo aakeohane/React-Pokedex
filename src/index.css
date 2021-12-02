@@ -14,12 +14,18 @@ body {
   align-items: center;
   padding: 10px;
   height: 50px;
-  background-color: #f8f9fa;
+  background-color: #f7475c;
+  color: white;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 1;
 }
 
 .nav-bar > img {
   margin-right: 5px;
   max-width: 40px;
+  filter: invert(95%);
 }
 
 .nav-bar > h1 {
@@ -31,30 +37,100 @@ input {
   border-radius: 5px;
   border: 1px solid #d5d4d8;
   padding: 10px;
+  margin-right: 1.5rem;
 }
 
 /* Main content stylings */
 .poke-container {
+  padding-top: 100px;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   background-color: #d1d5db;
+  height: 100%;
 }
 
 .poke-btn {
   margin: 10px;
-  width: 200px;
+  width: 300px;
+  height: 200px;
   border: none;
   cursor: pointer;
   border-radius: 5px;
   background-color: #f3f4f6;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center; */
+  transform: perspective(2px) translateZ(0);
 }
 
-.poke-btn:hover {
-  background-color: aqua;
+.poke-btn:hover,
+.poke-btn:focus,
+.poke-btn:active {
+  animation-name: poke-shake;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: 2;
+  background-color: #ffdbde;
+}
+
+/* button contents */
+
+.poke-id {
+  margin: 0;
+  z-index: -1;
+  position: absolute;
+  font-size: 80px;
+  top: -5px;
+  left: 5px;
+  color: #d2d7dc;
+  font-weight: 700;
+}
+
+.poke-name {
+  text-transform: capitalize;
+  font-family: "Press Start 2P", cursive;
+  font-size: 22px;
+  opacity: 0.8;
+}
+
+.poke-sprite {
+  padding-top: 10px;
+  height: 100px;
+}
+
+/* Poke-Buzz animation */
+@keyframes poke-shake {
+  10% {
+    transform: translateX(3px) rotate(2deg);
+  }
+  20% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+  30% {
+    transform: translateX(3px) rotate(2deg);
+  }
+  40% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+  50% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  60% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  70% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  80% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  90% {
+    transform: translateX(1px) rotate(0);
+  }
+  100% {
+    transform: translateX(-1px) rotate(0);
+  }
+}
+
+.load-more-btn {
+  margin: 0 auto;
 }
