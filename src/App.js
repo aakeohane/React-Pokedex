@@ -1,9 +1,13 @@
 import React from 'react'
 import Navbar from './components/Navbar';
+import Modal from './components/Modal';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
 export default function App() {
+
+  // store state of modal
+  const [show, setShow] = useState(false)
 
   const initialNum = 9;
   const [pokeNum, setPokeNum] = useState(initialNum)
@@ -46,23 +50,24 @@ export default function App() {
       })
   }
 
-  function showDetails(poke) {
+  const showDetails = (poke) => {
     fetch(poke.url)
-      .then(res => res.json())
-      .then(data => setPokemon( {
-        id: data.id,
-        name: data.name,
-        sprite: data.sprites.front_default,
-        imageUrl: data.sprites.other['official-artwork'].front_default,
-        height: data.height,
-        weight: data.weight,
-        // Array.from used to form array to map out individual values on render below
-        types: Array.from(data.types)
-      }))
+    .then(res => res.json())
+    .then(data => setPokemon( {
+      id: data.id,
+      name: data.name,
+      sprite: data.sprites.front_default,
+      imageUrl: data.sprites.other['official-artwork'].front_default,
+      height: data.height,
+      weight: data.weight,
+      // Array.from used to form array to map out individual values on render below
+      types: Array.from(data.types)
+    }))
+    setShow(true)
   }
 
   // search function to update state only where its needed in results, true source of state is unchanged (pokemonList)
-  function searchPokes(event) {
+  const searchPokes = (event) => {
     if(!event) {
       setResults(pokemonList)
       return
@@ -87,7 +92,7 @@ export default function App() {
     }
   }
 
-  function loadMore() {
+  const loadMore = () => {
     console.log("worked")
     setPokeNum(prevNum => prevNum + 6)
   }
@@ -108,21 +113,10 @@ export default function App() {
           <button className="load-more-btn" onClick={loadMore}>Load More +</button>
                 {/* add a random button */}
         </div>
-        
       </div>
-      <div> 
-        <h1>{pokemon.name}</h1>
-        <h2>{pokemon.id}</h2>
-        <img src={pokemon.imageUrl} alt={pokemon.name} />
-        <p>{ pokemon.types.length > 1 ? 'Types:' : 'Type:'}</p>
-        <ul>
-          {pokemon.types.map((type, index) => (
-            <li key={index}>
-              {type.type.name}
-            </li>
-          ))}
-        </ul>
-      </div>
+
+      <Modal onClose={() => setShow(false)} show={show} pokemon={pokemon} />
+
     </div>
   );
 }
