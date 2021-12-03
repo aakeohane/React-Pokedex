@@ -1,8 +1,8 @@
 {
   "name": "react-pokedex",
+  "homepage": "https://aakeohane.github.io/React-Pokedex/",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://aakeohane.github.io/React-Pokedex/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^11.2.7",
