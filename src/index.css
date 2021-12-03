@@ -469,12 +469,17 @@ This is too many untargeted media queries */
   .modal-title {
     font-size: 23px;
   }
+
+  input {
+    width: 125px;
+  }
   /* nifty trick to wrap placeholder text */
   ::-webkit-input-placeholder {
     /* Chrome/Opera/Safari */
-    white-space: pre-line;
+    white-space: pre-wrap;
     position: relative;
     top: -7px;
+    font-size: 12px;
   }
   ::-moz-placeholder {
     /* Firefox 19+ */

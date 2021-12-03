@@ -93,8 +93,9 @@ export default function App() {
   }
 
   const loadMore = () => {
-    setPokeNum(prevNum => prevNum + 6)
+    setPokeNum(prevNum => prevNum + 9)
   }
+
 
   return (
     <div className="App">
@@ -104,14 +105,19 @@ export default function App() {
         {results.slice(0, pokeNum).map((poke) => (
           <button className="poke-btn" key={poke.id} onClick={() => showDetails(poke)}>
             <p className="poke-id">{poke.id}</p>
-            <img className="poke-sprite" src={poke.pokeSprites} alt={poke.name} />
+            {/* hitmonchan was a glitch with the poke sprite width so had to exclude him from broad styling */}
+            <img style={{'width': poke.name === 'hitmonchan' ? '20%' : '100%'}} 
+              className="poke-sprite" src={poke.pokeSprites} alt={poke.name} />
             <h1 className="poke-name">{poke.name}</h1>
           </button>
         ))}
       </div>
         <div className="button-container">
-          <button className="load-more-btn" onClick={loadMore}>Load more Pokes</button>
-                {/* add a random button */}
+          { results.length === 0 && <p>No pokemon match your search. Try again!</p>}
+          {results.length > 0 && !(pokeNum === results.length) && !(pokeNum >= 151) && 
+            <button className="load-more-btn" onClick={loadMore}>Load more Pokes</button>
+          }
+                {/* add a random button for random pokemon */}
         </div>
 
       <Modal onClose={() => setShow(false)} show={show} pokemon={pokemon} />
