@@ -194,6 +194,7 @@ input {
   justify-content: space-evenly;
   padding-bottom: 20px;
   overflow: hidden;
+  position: absolute;
 }
 
 .modal.show .modal-content {
@@ -237,6 +238,8 @@ input {
   font-size: 28px;
   text-align: center;
   font-family: "Press Start 2P", cursive;
+  position: relative;
+  top: 10px;
 }
 
 .modal-body--poke-id {
