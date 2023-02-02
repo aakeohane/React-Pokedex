@@ -61,6 +61,10 @@ input {
   background-color: #f3f4f6;
   box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
   transform: perspective(2px) translateZ(0);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .poke-btn:hover,
@@ -94,7 +98,6 @@ input {
 }
 
 .poke-sprite {
-  padding-top: 10px;
   width: 100%;
   max-width: 150px;
 }
@@ -318,7 +321,7 @@ ul {
 .badge-color > span {
   text-transform: uppercase;
   font-size: 0.8rem;
-  letter-spacing: -.5px;
+  letter-spacing: -0.5px;
   color: white;
   text-shadow: 0em 0em 0.2em black;
 }
