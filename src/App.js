@@ -1,13 +1,20 @@
-import React from 'react'
-import Navbar from './components/Navbar';
-import Modal from './components/Modal';
-import { useEffect } from 'react';
+import Navbar from './components/Navbar'
+import Modal from './components/Modal'
+import { useEffect } from 'react'
 import { useState } from 'react';
 
 export default function App() {
 
   // store state of modal
   const [show, setShow] = useState(false)
+
+  useEffect(() => {
+    if (show) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [show]);
 
   const initialNum = 9;
   const [pokeNum, setPokeNum] = useState(initialNum)
