@@ -455,6 +455,10 @@ This is too many untargeted media queries */
     font-size: 23px;
   }
 
+  .modal-content {
+    padding-bottom: 0px;
+  }
+
   input {
     width: 125px;
   }
